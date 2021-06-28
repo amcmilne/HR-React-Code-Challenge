@@ -1,0 +1,97 @@
+{
+"sundaes": [
+    {
+        "sundae": "Hot Fudge Sundae",
+        "id": 1
+    },
+    {
+        "sundae": "Caramel Sundae",
+        "id": 2
+    },
+    {
+        "sundae": "Turtle Sundae",
+        "id": 3
+    },
+    {
+        "sundae": "Strawberry Sundae",
+        "id": 4
+    },
+    {
+        "sundae": "Funfetti Sundae",
+        "id": 5
+    },
+    {
+        "sundae": "Razzle Dazzle Sundae",
+        "id": 6
+    }
+],
+
+    "icecream": [
+        {
+            "flavor": "chocolate",
+            "id": 1
+        },
+        {
+            "flavor": "vanilla",
+            "id": 2
+        },
+        {
+            "flavor": "strawberry",
+            "id": 3
+        },
+        {
+            "flavor": "banana",
+            "id": 4
+        },
+        {
+            "flavor": "oreo",
+            "id": 5
+        },
+        {
+            "flavor": "mint",
+            "id": 6
+        },
+        {
+            "flavor": "butter pecan",
+            "id": 7
+        },
+        {
+            "flavor": "rainbow",
+            "id": 8
+        }
+    ],
+    "toppings": [
+        {
+            "type": "caramel",
+            "id": 1
+        },
+        {
+            "type": "hot fudge",
+            "id": 2
+        },
+        {
+            "type": "strawberry",
+            "id": 3
+        },
+        {
+            "type": "marshmallow",
+            "id": 4
+        },
+        {
+            "type": "cookie crumble",
+            "id": 5
+        },
+        {
+            "type": "peanuts",
+            "id": 6
+        },
+        {
+            "type": "chocolate sprinkles",
+            "id": 7
+        },
+        {
+            "type": "rainbow sprinkles",
+            "id": 8
+        }
+    ]
+}
