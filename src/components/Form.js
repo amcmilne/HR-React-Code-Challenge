@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import IceCreamList from "./IceCreamList";
 import ToppingsList from "./ToppingsList";
 
 function Form() {
-
-
   return (
     <div className="form">
       <h1>Please Choose Your Custom Options Below: </h1>
       <div className="icecreamOptions" id="myflavors">
         <h2>Flavors:</h2>
-        <label>Search</label>
-        <input type="text" placeholder="search"></input>
+
         <IceCreamList />
       </div>
       <div className="toppingsOptions" id="mytoppings">
         <h2>Toppings:</h2>
-        <label>Search</label>
+        <label>Search:</label>
         <input type="text" placeholder="search"></input>
         <ToppingsList />
       </div>

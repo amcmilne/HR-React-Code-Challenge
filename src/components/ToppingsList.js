@@ -9,7 +9,6 @@ function ToppingsList() {
   };
   return (
     <div className="toppings-list">
-      {toppings}
       <label>Select:</label>
       <select onChange={handleToppingsChange}>
         <option value="Select Toppings"></option>
@@ -20,6 +19,7 @@ function ToppingsList() {
           </option>
         ))}
       </select>
+      <div style={{borderRadius: "3px", backgroundColor:"#D8BFD8",  }}> {toppings} </div>
     </div>
   );
 }
