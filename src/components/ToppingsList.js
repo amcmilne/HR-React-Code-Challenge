@@ -13,7 +13,7 @@ function ToppingsList() {
       <select onChange={handleToppingsChange}>
         <option value="Select Toppings"></option>
 
-        {content.mytoppings.toppings.map((types) => (
+        {content.toppings.map((types) => (
           <option className="icrecreamFlavors" key={types.id}>
             {types.type}
           </option>

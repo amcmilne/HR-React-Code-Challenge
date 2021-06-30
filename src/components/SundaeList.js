@@ -7,13 +7,13 @@ function SundaeList() {
   const [filteredSundaes, setFilteredSundaes] = useState([]);
 
   useEffect(() => {
-    setSundaes(content.mysundaes.sundaes);
+    setSundaes(content.sundaes);
   }, [sundaes]);
 
   useEffect(() => {      
     setFilteredSundaes(
           sundaes.filter((sundae) =>
-            sundae.sundae.toLowerCase().includes(search.toLowerCase())
+            sundae.name.toLowerCase().includes(search.toLowerCase())
           )
         );
   }, [search, sundaes]);
@@ -39,11 +39,12 @@ function SundaeList() {
   );
 }
 const SundaeDetail = (props) => {
-  const { sundae, id } = props;
-
+  const { name } = props;
+// console.log(props);
   return (
     <>
-      <li>{sundae}</li>
+      <li>{name}</li>
+      
     </>
   );
 };

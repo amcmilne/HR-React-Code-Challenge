@@ -13,8 +13,7 @@ function Form() {
       </div>
       <div className="toppingsOptions" id="mytoppings">
         <h2>Toppings:</h2>
-        <label>Search:</label>
-        <input type="text" placeholder="search"></input>
+
         <ToppingsList />
       </div>
 

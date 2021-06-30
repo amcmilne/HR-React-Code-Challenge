@@ -23,7 +23,7 @@ function IceCreamList() {
       <select onChange={handleIcecreamChange}>
         <option placeholder="Choices" value="Select Flavor"></option>
 
-        {content.myflavors.icecream.map((flavors) => (
+        {content.icecream.map((flavors) => (
           <option className="icrecreamFlavors" key={flavors.id}>
             {flavors.flavor}
           </option>
