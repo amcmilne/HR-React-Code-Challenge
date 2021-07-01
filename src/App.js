@@ -21,7 +21,7 @@ function App() {
       <div className="App">
         <div>
           {customizedOrder === "start" && (
-            <AddButton addCustomizedOrder={handleClickAddCustomizedOrder}/>
+            <AddButton addCustomizedOrder={handleClickAddCustomizedOrder} />
           )}
 
           {customizedOrder === "add-order" && <Form />}

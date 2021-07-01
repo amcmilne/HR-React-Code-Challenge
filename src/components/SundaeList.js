@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import content from "../content";
+//import Cart from "../components/Cart";
 
 function SundaeList() {
   const [sundaes, setSundaes] = useState([]);
@@ -10,27 +11,34 @@ function SundaeList() {
     setSundaes(content.sundaes);
   }, [sundaes]);
 
-  useEffect(() => {      
+  useEffect(() => {
     setFilteredSundaes(
-          sundaes.filter((sundae) =>
-            sundae.name.toLowerCase().includes(search.toLowerCase())
-          )
-        );
+      sundaes.filter((sundae) =>
+        sundae.name.toLowerCase().includes(search.toLowerCase())
+      )
+    );
   }, [search, sundaes]);
+
+  useEffect(() => {
+    localStorage.setItem("sundae", JSON.stringify(sundaes));
+  }, [sundaes]);
+  //console.log(sundaes);
 
   return (
     <>
-      <div className="toppings-list">       
+      <div className="toppings-list">
         <form>
           <label>Search:</label>
           <input
             type="text"
+            value={search}
             placeholder="search"
             onChange={(e) => setSearch(e.target.value)}
           />
+
           <ul>
             {filteredSundaes.map((sundae, id) => (
-              <SundaeDetail key={id} {...sundae} />
+              <SundaeChoice key={id} {...sundae} />
             ))}
           </ul>
         </form>
@@ -38,13 +46,15 @@ function SundaeList() {
     </>
   );
 }
-const SundaeDetail = (props) => {
+const SundaeChoice = (props) => {
   const { name } = props;
-// console.log(props);
+  //console.log(props.name);
+
   return (
     <>
-      <li>{name}</li>
-      
+      <div>
+        <span>{name}</span>
+      </div>
     </>
   );
 };
