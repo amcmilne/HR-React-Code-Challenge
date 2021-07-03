@@ -22,6 +22,8 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const sundaeChoice = { icecream, toppings, size };
+    // return sundaeChoice;
+
     console.log(sundaeChoice);
   };
 

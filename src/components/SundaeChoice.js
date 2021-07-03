@@ -1,17 +1,15 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
-// ----------------------- RENDERED LIST OF SUNDAES WITH ADD TO CART OPTION -------------------------------
-function SundaeChoice(props) {
-  const { option, handleOnAdd } = props;
-  //console.log(option);
+export default function Product(props) {
+  const { sundae, onAdd } = props;
   return (
-    <>
-      <div className="sundae-list">
-        <h3>{option}</h3>
-        <button onClick={handleOnAdd} option={option}>Add to Cart</button>
-      </div>
-    </>
+    <div>
+      <h3>{sundae.option}</h3>
+
+      <Button className="btn-responsive" variant="info" size="sm" onClick={() => onAdd(sundae)}>
+        <i class="fas fa-cart-plus"></i>
+      </Button>
+    </div>
   );
 }
-
-export default SundaeChoice;

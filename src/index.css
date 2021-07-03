@@ -1,94 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap");
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 * {
   margin: 0;
-  font-family: 'Viaoda Libre';
+  font-family: "Viaoda Libre";
   color: #333;
 }
 
 .header {
-  padding: 20px; 
-  display: flex; 
-  align-items: center; 
-  text-decoration: none; 
-  max-width: 720px;
-  margin: 0 auto; 
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  max-width: auto;
+  margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
-  block: padding .5rem; 
-  border-radius: 0.5rem;   
+  block: padding 0.5rem;
+  border-radius: 0.5rem;
 }
 
-.content, .add-button, .form {
-  display: flex-auto; 
-  align-items: center; 
+.content,
+.add-button,
+.form {
+  display: flex-auto;
+  align-items: center;
   max-width: 720px;
-  margin: 40px auto; 
+  margin: 40px auto;
   padding: 20px;
 }
 
 .row {
-  display: flex; 
-  justify-content: space-between; 
-}
-.col-1 {
-  flex: 1; 
-}
-.col-2 {
-  flex: 2; 
-}
-.col-3 {
-  flex: 3; 
-}
-.block {
-  padding: 1rem; 
-  border-radius: .5rem; 
-
+  display: flex;
+  justify-content: space-between;
 }
 .row.center {
-  align-items: center; 
+  align-items: center;
 }
-button {
-  font-size: 0.8rem; 
-  padding: 0.2rem; 
-  margin: 0.1rem; 
-  border-radius: 0.5rem; 
-  border: .1rem #404040 solid; 
-  width: 25%; 
-  curser: pointer; 
+.col-1 {
+  flex: 1;
 }
-button:hover {
-  background-color: #4CAF50; /* Green */
+.col-2 {
+  flex: 2;
+}
+.col-3 {
+  flex: 3;
+}
+.block {
+  background-color: #e0e0e0;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 1.5rem;
+}
+.text-right {
+  text-align: right;
+}
+.button {
+  min-width: 55% !important;
+  min-height: 50% !important;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  align-items: center;
+}
+.button:hover {
+  background-color: #4caf50;
   color: white;
 }
- 
 
 .sundae-list {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
-  max-width: 75%;
-  margin: auto; 
+  max-width: 100%;
+  margin: auto;
 }
 
 h1.sundaeList {
-  text-align: center; 
-}
-
-h1.cart {
-  text-align: right; 
+  text-align: center;
 }
 
 .cart-empty {
-  text-align: right; 
+  text-align: right;
 }
 
 aside {
-  border-radius: 0.5rem; 
-  border: .1rem #404040 solid; 
-  max-width: 25%;
-  float: right; 
-
+  border-radius: 0.5rem;
+  float: right;
 }
-/* .search-bar {
-  float: right; 
-  margin: 1.5rem; 
-} */
+
+@media (max-width: 768px) {
+  .btn-responsive {
+    padding: 2px 4px;
+    font-size: 80%;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding: 4px 9px;
+    font-size: 90%;
+    line-height: 1.2;
+  }
+}
+h3 {
+  display: inline-block;
+  margin-right: 10px;
+  }

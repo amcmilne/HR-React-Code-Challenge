@@ -1,68 +1,68 @@
-import { useState } from "react";
-import Header from "./components/Header";
-import AddButton from "./components/AddButton";
-import SundaeMain from "./components/SundaeMain";
-import Form from "./components/Form";
-import Cart from "./components/Cart";
 import data from "./content/index";
+import { useState } from "react";
+import AddButton from "./components/AddButton";
+import Form from "./components/Form";
+import Header from "./components/Header";
+import SundaeMain from "./components/SundaeMain";
+import Cart from "./components/Cart";
 
 function App() {
   const { sundaes } = data;
-  const title = "Sundae List:";
-  const [cartItem, setCartItem] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [customizedOrder, setCustomizedOrder] = useState("start");
+  
 
-  // --------------------ADD SUNDAE TO CART -----------------------------
-
-  const handleOnAdd = (sundae) => {
-    const exist = cartItem.find((x) => x.id === sundae.id);
+  //---------------------ADD TO CART --------------------------------------//
+  const onAdd = (sundae) => {
+    const exist = cartItems.find((x) => x.id === sundae.id);
     if (exist) {
-      setCartItem(
-        cartItem.map((x) =>
+      setCartItems(
+        cartItems.map((x) =>
           x.id === sundae.id ? { ...exist, qty: exist.qty + 1 } : x
         )
       );
     } else {
-      setCartItem([...cartItem, { ...sundae, qty: 1 }]);
+      setCartItems([...cartItems, { ...sundae, qty: 1 }]);
     }
   };
-  const handleOnRemove = (sundae) => {
-    const exist = cartItem.find((x) => x.id === sundae.id);
+
+  // ------------------REMOVE FROM CART ----------------------------------//
+  const onRemove = (sundae) => {
+    const exist = cartItems.find((x) => x.id === sundae.id);
     if (exist.qty === 1) {
-      setCartItem(cartItem.filter((x) => x.id !== sundae.id));
+      setCartItems(cartItems.filter((x) => x.id !== sundae.id));
     } else {
-      setCartItem(
-        cartItem.map((x) =>
+      setCartItems(
+        cartItems.map((x) =>
           x.id === sundae.id ? { ...exist, qty: exist.qty - 1 } : x
         )
       );
     }
   };
-  //console.log(sundaes[0].option);
 
-  // --------------------START A CUSTOMIZED ORDER --------------------------
+  // --------------------START A CUSTOMIZED ORDER --------------------------//
 
   const handleClickAddCustomizedOrder = () => {
     setCustomizedOrder("add-order");
   };
+
   return (
-    <>
-      <Header className="header" />
-      <div className="block col-1">
-        <h1 className="sundaeList">{title}</h1>
-        <SundaeMain sundaes={sundaes} onAdd={handleOnAdd} />
+    <div className="App">
+      <Header countCartItems={cartItems.length} />
+      <div className="row">
+        <SundaeMain sundaes={sundaes} onAdd={onAdd} />
+        <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
       </div>
-      <div className="block col-2">
+      <div>
         <div>
           {customizedOrder === "start" && (
             <AddButton addCustomizedOrder={handleClickAddCustomizedOrder} />
           )}
 
           {customizedOrder === "add-order" && <Form />}
-          <Cart cartItem={cartItem} onAdd={handleOnAdd} onRemove={handleOnRemove} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

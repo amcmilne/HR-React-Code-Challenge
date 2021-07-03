@@ -1,24 +1,50 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
-function Cart(props) {
-  const { cartItem } = props;
-  console.log(cartItem);
+export default function Cart(props) {
+  const { cartItems, onAdd, onRemove } = props;
 
   return (
-    <aside className="block">
-      <h1 className="cart">Your Treats!</h1>
+    <aside className="block col-1">
+      <h2>Cart Items</h2>
       <div>
-        {cartItem.length === 0 && <div className="cart-empty">Cart is Empty</div>}
-        {/* {cartItem.map((sundae) => (
-          <div key={sundae.id} className="row">
-            <div className="col-2">{sundae}</div>
+        {cartItems.length === 0 && <div>Cart is empty</div>}
+        {cartItems.map((item) => (
+          <div key={item.id} className="row">
+            <div className="col-2">
+              <ul>
+                <li>{item.option}</li>
+              </ul>
+            </div>
+            <div className="col-2">
+              <Button
+                className="btn-responsive"
+                onClick={() => onRemove(item)}
+                variant="primary"
+                size="sm"
+              >
+                <i class="fas fa-minus"></i>
+              </Button>{" "}
+              <Button
+                className="btn-responsive"
+                onClick={() => onAdd(item)}
+                variant="success"
+                size="sm"
+              >
+                <i class="fas fa-plus"></i>
+              </Button>
+            </div>
+            <div className="col-2 text-right">Qty: {item.qty}</div>
           </div>
-        ))} */}
+        ))}
 
-        {cartItem.length === 0 && (
+        {cartItems.length !== 0 && (
           <>
+            <hr />
             <div className="row">
-              <button onClick={() => alert("Implement Checkout!")}>Checkout</button>
+              <button onClick={() => alert("Implement Checkout!")}>
+                Checkout
+              </button>
             </div>
           </>
         )}
@@ -26,5 +52,3 @@ function Cart(props) {
     </aside>
   );
 }
-
-export default Cart;
