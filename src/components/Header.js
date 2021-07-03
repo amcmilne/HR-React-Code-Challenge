@@ -2,10 +2,15 @@ import React from 'react'
 
 function Header() {
     return (
-        <div className="header" style={{backgroundColor:"#F5FFFA"}}>
+        <header className="header row block center" style={{backgroundColor:"#F5FFFA"}}>
+            <div>
             <h1 className="main-title" style={{color: "#DC143C"}}> Sundae...</h1>
-            <h2 className="sub-title" style={{color: "#48D1CC"}}>our favorite day of the week</h2>            
-        </div>
+            <h2 className="sub-title" style={{color: "#48D1CC"}}>our favorite day of the week</h2> 
+            </div>    
+            <div>
+                <a href="#/cart" style={{textDecoration:'none'}}> Cart </a>
+                </div>       
+        </header>
     )
 }
 

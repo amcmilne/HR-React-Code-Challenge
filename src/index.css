@@ -13,7 +13,9 @@
   text-decoration: none; 
   max-width: 720px;
   margin: 0 auto; 
-  border-bottom: 1px solid #f2f2f2;  
+  border-bottom: 1px solid #f2f2f2;
+  block: padding .5rem; 
+  border-radius: 0.5rem;   
 }
 
 .content, .add-button, .form {
@@ -23,3 +25,70 @@
   margin: 40px auto; 
   padding: 20px;
 }
+
+.row {
+  display: flex; 
+  justify-content: space-between; 
+}
+.col-1 {
+  flex: 1; 
+}
+.col-2 {
+  flex: 2; 
+}
+.col-3 {
+  flex: 3; 
+}
+.block {
+  padding: 1rem; 
+  border-radius: .5rem; 
+
+}
+.row.center {
+  align-items: center; 
+}
+button {
+  font-size: 0.8rem; 
+  padding: 0.2rem; 
+  margin: 0.1rem; 
+  border-radius: 0.5rem; 
+  border: .1rem #404040 solid; 
+  width: 25%; 
+  curser: pointer; 
+}
+button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+ 
+
+.sundae-list {
+  display: flex; 
+  justify-content: space-between;
+  max-width: 75%;
+  margin: auto; 
+}
+
+h1.sundaeList {
+  text-align: center; 
+}
+
+h1.cart {
+  text-align: right; 
+}
+
+.cart-empty {
+  text-align: right; 
+}
+
+aside {
+  border-radius: 0.5rem; 
+  border: .1rem #404040 solid; 
+  max-width: 25%;
+  float: right; 
+
+}
+/* .search-bar {
+  float: right; 
+  margin: 1.5rem; 
+} */
