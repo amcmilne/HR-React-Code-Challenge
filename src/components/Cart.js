@@ -12,8 +12,8 @@ export default function Cart(props) {
         {cartItems.map((item) => (
           <div key={item.id} className="row">
             <div className="col-2">
-              <ul>
-                <li>{item.option}</li>
+              <ul className="fa-ul">
+                <li><span className="fa-li"><i className="fas fa-ice-cream"></i></span>{item.option}</li>
               </ul>
             </div>
             <div className="col-2">
@@ -23,15 +23,17 @@ export default function Cart(props) {
                 variant="primary"
                 size="sm"
               >
-                <i class="fas fa-minus"></i>
-              </Button>{" "}
+                <i className="fas fa-minus"></i>
+              </Button>
+              {" "}
               <Button
                 className="btn-responsive"
                 onClick={() => onAdd(item)}
                 variant="success"
                 size="sm"
               >
-                <i class="fas fa-plus"></i>
+                <i className="fas fa-plus"></i>
+                
               </Button>
             </div>
             <div className="col-2 text-right">Qty: {item.qty}</div>
@@ -41,10 +43,14 @@ export default function Cart(props) {
         {cartItems.length !== 0 && (
           <>
             <hr />
-            <div className="row">
-              <button onClick={() => alert("Implement Checkout!")}>
+            <div className="text-right">
+              <Button
+                className="btn-responsive"
+                variant="danger"
+                onClick={() => alert("Implement Checkout!")}
+              >
                 Checkout
-              </button>
+              </Button>
             </div>
           </>
         )}

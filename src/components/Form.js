@@ -4,33 +4,36 @@ import { useState } from "react";
 import content from "../content";
 
 function Form() {
-  const [icecream, setIcecream] = useState("");
-  const [toppings, setToppings] = useState("");
+  const [icecream, setIcecream] = useState([]);
+  const [toppings, setToppings] = useState([]);
   const [size, setSize] = useState("");
-  // const [container, setContainer] = useState("")
+  const [customSundae, setCustomSundae] = useState([]);
+  const [container, setContainer] = useState("");
+  const sundaeObject = { icecream, toppings, size, container };
+  const sundaeArray = [content];
+  const newSundaeArray = [...sundaeArray, sundaeObject];
+  console.log(newSundaeArray);
 
+  //----------------Handle Icecream Selection -----------------------//
   const handleIcecreamChange = (e) => {
     e.preventDefault();
     setIcecream(e.target.value);
   };
-
+  // --------------Handle Toppings Selection -----------------------//
   const handleToppingsChange = (e) => {
     e.preventDefault();
     setToppings(e.target.value);
   };
-
+  // -------------Handle Submit Selections ------------------------//
   const handleSubmit = (e) => {
     e.preventDefault();
-    const sundaeChoice = { icecream, toppings, size };
-    // return sundaeChoice;
-
-    console.log(sundaeChoice);
+    setCustomSundae(customSundae);
   };
-
+  console.log(customSundae);
   return (
     <div className="form">
       <form onSubmit={handleSubmit}>
-        <h1>Please Choose Your Custom Options Below: </h1>
+        <h1>Create Your Own! </h1>
 
         <div className="icecreamOptions" id="myflavors">
           <h2>Flavors:</h2>
@@ -45,11 +48,9 @@ function Form() {
                 </option>
               ))}
             </select>
-            {/* <li>{icecream}</li> */}
           </div>
-
-          {/* <IceCreamList /> */}
         </div>
+        <hr></hr>
         <div className="toppingsOptions" id="mytoppings">
           <h2>Toppings:</h2>
           <div className="toppings-list">
@@ -62,13 +63,9 @@ function Form() {
                 </option>
               ))}
             </select>
-            {/* <div style={{ borderRadius: "3px", backgroundColor: "#D8BFD8" }}>
-            {toppings}
-          </div> */}
           </div>
-          {/* <ToppingsList /> */}
         </div>
-
+        <hr></hr>
         <h2>Size:</h2>
         <select value={size} onChange={(e) => setSize(e.target.value)}>
           <option value="One Scoop">One Scoop</option>
@@ -76,44 +73,63 @@ function Form() {
           <option value="Three Scoops">Three Scoops</option>
           <option value="shareable">Shareable</option>
         </select>
-
-        <label>Favorites</label>
-        <input name="flavors" type="checkbox" value="Favorites"></input>
-
+        <hr></hr>
         <h2>Container:</h2>
-        <div className="radio">
+
+        <div
+          className="radio"
+          value={container}
+          onChange={(e) => setContainer(e.target.value)}
+        >
           <label>
             <input
               type="radio"
-              value="option1"
+              value="Cup"
+              name="container"
               required={true}
               //   checked={false}
             />
             Cup
           </label>
+
           <label>
             <input
               type="radio"
-              value="option2"
+              value="   Waffle Bowl"
+              name="container"
               required={true}
               //   checked={false}
             />
             Waffle Bowl
           </label>
+
           <label>
             <input
               type="radio"
-              value="option3"
+              value=" Dipped Waffle Bowl"
+              name="container"
               required={true}
               //   checked={false}
             />
             Dipped Waffle Bowl
           </label>
         </div>
+        <hr></hr>
+        <ul>
+          {/* {sundaeArray.map((newSundae, index) => (
+      <li className="icrecreamFlavors" key={index}>
+          {newSundae.icecream}
+          {newSundae.toppings}
+          {newSundae.size}
+          {newSundae.container}
+      </li>
+    ))} */}
+          <li>{icecream}</li>
+          <li>{toppings}</li>
+          <li>{size}</li>
+          <li>{container}</li>
+        </ul>
 
-        <p>{icecream}</p>
-        <p> {toppings}</p>
-        <p>{size}</p>
         <button type="submit">Submit</button>
       </form>
     </div>

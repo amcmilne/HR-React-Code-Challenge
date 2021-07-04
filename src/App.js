@@ -1,5 +1,5 @@
 import data from "./content/index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddButton from "./components/AddButton";
 import Form from "./components/Form";
 import Header from "./components/Header";
@@ -10,9 +10,12 @@ function App() {
   const { sundaes } = data;
   const [cartItems, setCartItems] = useState([]);
   const [customizedOrder, setCustomizedOrder] = useState("start");
-  
 
-  //---------------------ADD TO CART --------------------------------------//
+  // -----------------------------------SET TO LOCAL STORAGE --------------------------------------
+  useEffect(() => {
+    localStorage.setItem("sundae", JSON.stringify(sundaes));
+  }, [sundaes]);
+
   const onAdd = (sundae) => {
     const exist = cartItems.find((x) => x.id === sundae.id);
     if (exist) {
@@ -25,8 +28,6 @@ function App() {
       setCartItems([...cartItems, { ...sundae, qty: 1 }]);
     }
   };
-
-  // ------------------REMOVE FROM CART ----------------------------------//
   const onRemove = (sundae) => {
     const exist = cartItems.find((x) => x.id === sundae.id);
     if (exist.qty === 1) {
@@ -40,7 +41,7 @@ function App() {
     }
   };
 
-  // --------------------START A CUSTOMIZED ORDER --------------------------//
+  // --------------------START A CUSTOMIZED ORDER --------------------------
 
   const handleClickAddCustomizedOrder = () => {
     setCustomizedOrder("add-order");
