@@ -72,26 +72,32 @@ const data = {
   sundaes: [
     {
       option: "Hot Fudge Sundae",
+      type: "classic",
       id: '1',
     },
     {
       option: "Caramel Sundae",
+      type: "classic",
       id: '2',
     },
     {
       option: "Turtle Sundae",
+      type: "classic",
       id: '3',
     },
     {
       option: "Strawberry Sundae",
+      type: "classic",
       id: '4',
     },
     {
       option: "Funfetti Sundae",
+      type: "classic",
       id: '5',
     },
     {
       option: "Razzle Dazzle Sundae",
+      type: "classic",
       id: '6',
     },
   ],

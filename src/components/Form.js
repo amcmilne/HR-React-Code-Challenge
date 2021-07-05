@@ -1,47 +1,118 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 //import IceCreamList from "./IceCreamList";
 //import ToppingsList from "./ToppingsList";
 import content from "../content";
+import Button from "react-bootstrap/Button";
+import { v4 as uuidv4 } from "uuid";
 
-function Form() {
-  const [icecream, setIcecream] = useState([]);
-  const [toppings, setToppings] = useState([]);
+function Form(props) {
+  // let key = {index};
+  let id = uuidv4();
+  let type = "custom";
+  const { onAdd, cartItem } = props;
+  const [icecream, setIcecream] = useState("");
+  const [toppings, setToppings] = useState("");
   const [size, setSize] = useState("");
-  const [customSundae, setCustomSundae] = useState([]);
   const [container, setContainer] = useState("");
-  const sundaeObject = { icecream, toppings, size, container };
-  const sundaeArray = [content];
-  const newSundaeArray = [...sundaeArray, sundaeObject];
-  console.log(newSundaeArray);
+  const [option, setSundaeName] = useState("");
 
+  const [editingItem, setEditingItem] = useState("true");
+
+  useEffect(() => {
+    if (typeof cartItem != "undefined") {
+      console.log(editingItem);
+      console.log(cartItem);
+      setSundaeName(
+        cartItem.option,
+        cartItem.icecream,
+        cartItem.toppings,
+        cartItem.size,
+        cartItem.container
+      );
+      setEditingItem("false");
+    }
+  }, [cartItem, editingItem]);
+
+  if (
+    typeof cartItem != "undefined" &&
+    cartItem !== "classic" &&
+    editingItem === "true"
+  ) {
+    console.log(editingItem);
+    console.log(cartItem);
+    setSundaeName(
+      cartItem.option,
+      cartItem.icecream,
+      cartItem.toppings,
+      cartItem.size,
+      cartItem.container
+    );
+    setEditingItem("false");
+  }
+  //----------------Handle Name Selection -----------------------//
+  const handleNameChange = (e) => {
+    e.preventDefault();
+    setSundaeName(e.target.value);
+  };
   //----------------Handle Icecream Selection -----------------------//
   const handleIcecreamChange = (e) => {
     e.preventDefault();
     setIcecream(e.target.value);
   };
+
   // --------------Handle Toppings Selection -----------------------//
   const handleToppingsChange = (e) => {
     e.preventDefault();
     setToppings(e.target.value);
   };
+  // --------------Handle Size Selection -------------------------//
+  const handleSizeChange = (e) => {
+    e.preventDefault();
+    setSize(e.target.value);
+  };
+  // --------------Handle Container Selection -----------------------//
+  const handleContainerChange = (e) => {
+    e.preventDefault();
+    setContainer(e.target.value);
+  };
   // -------------Handle Submit Selections ------------------------//
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setCustomSundae(customSundae);
+    let sundaeObject = {
+      id,
+      type,
+      option,
+      icecream,
+      toppings,
+      size,
+      container,
+    };
+    onAdd(sundaeObject);
   };
-  console.log(customSundae);
+
   return (
     <div className="form">
-      <form onSubmit={handleSubmit}>
-        <h1>Create Your Own! </h1>
+      <form onSubmit={(e) => handleSubmit(e.target.reset)}>
+        <h1>Create Your Own!</h1>
 
-        <div className="icecreamOptions" id="myflavors">
+        <div className="customSundaeName">
+          <label>Name Your Sundae:</label>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Choose Your Name"
+            aria-label="default input example"
+            value={option}
+            onChange={handleNameChange}
+          />
+        </div>
+
+        <div className="icecreamOptions" id="flavors">
           <h2>Flavors:</h2>
 
           <div className="icecream-list">
             <label>Select:</label>
-            <select onChange={handleIcecreamChange}>
-              <option placeholder="Choices" value="Select Flavor"></option>
+            <select className="form-select" onChange={handleIcecreamChange}>
+              <option placeholder="Choices" value={icecream}></option>
               {content.icecream.map((flavors) => (
                 <option className="icrecreamFlavors" key={flavors.id}>
                   {flavors.flavor}
@@ -51,12 +122,12 @@ function Form() {
           </div>
         </div>
         <hr></hr>
-        <div className="toppingsOptions" id="mytoppings">
+        <div className="toppingsOptions" id="toppings">
           <h2>Toppings:</h2>
           <div className="toppings-list">
             <label>Select:</label>
-            <select onChange={handleToppingsChange}>
-              <option value="Select Toppings"></option>
+            <select className="form-select" onChange={handleToppingsChange}>
+              <option value={toppings}></option>
               {content.toppings.map((types) => (
                 <option className="icrecreamFlavors" key={types.id}>
                   {types.type}
@@ -67,7 +138,11 @@ function Form() {
         </div>
         <hr></hr>
         <h2>Size:</h2>
-        <select value={size} onChange={(e) => setSize(e.target.value)}>
+        <select
+          className="form-select"
+          value={size}
+          onChange={handleSizeChange}
+        >
           <option value="One Scoop">One Scoop</option>
           <option value="Two Scoops">Two Scoops</option>
           <option value="Three Scoops">Three Scoops</option>
@@ -77,60 +152,98 @@ function Form() {
         <h2>Container:</h2>
 
         <div
-          className="radio"
+          className="container"
           value={container}
-          onChange={(e) => setContainer(e.target.value)}
+          onChange={handleContainerChange}
         >
-          <label>
+          <div className="form-check form-check-inline">
             <input
+              className="form-check-input"
               type="radio"
               value="Cup"
-              name="container"
-              required={true}
+              name="flexRadioDefault"
+              id="flexRadioDefault1"
               //   checked={false}
             />
-            Cup
-          </label>
-
-          <label>
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
+              Cup
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
             <input
+              className="form-check-input"
               type="radio"
-              value="   Waffle Bowl"
-              name="container"
-              required={true}
+              value="Waffle Bowl"
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
               //   checked={false}
             />
-            Waffle Bowl
-          </label>
-
-          <label>
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
+              Waffle Bowl
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
             <input
+              className="form-check-input"
               type="radio"
               value=" Dipped Waffle Bowl"
-              name="container"
-              required={true}
+              name="flexRadioDefault"
+              id="flexRadioDefault3"
               //   checked={false}
             />
-            Dipped Waffle Bowl
-          </label>
+            <label className="form-check-label" htmlFor="flexRadioDefault3">
+              Dipped Waffle Bowl
+            </label>
+          </div>
         </div>
         <hr></hr>
-        <ul>
-          {/* {sundaeArray.map((newSundae, index) => (
-      <li className="icrecreamFlavors" key={index}>
-          {newSundae.icecream}
-          {newSundae.toppings}
-          {newSundae.size}
-          {newSundae.container}
-      </li>
-    ))} */}
-          <li>{icecream}</li>
-          <li>{toppings}</li>
-          <li>{size}</li>
-          <li>{container}</li>
-        </ul>
-
-        <button type="submit">Submit</button>
+        <div className="row">
+          <div className="col-2">
+            <ul className="fa-ul">
+              <li>
+                <span className="fa-li">
+                  <i className="fas fa-ice-cream"></i>
+                </span>
+                {option}
+              </li>
+              <li>
+                <span className="fa-li">
+                  <i className="fas fa-ice-cream"></i>
+                </span>
+                {icecream}
+              </li>
+              <li>
+                <span className="fa-li">
+                  <i className="fas fa-ice-cream"></i>
+                </span>
+                {toppings}
+              </li>
+              <li>
+                <span className="fa-li">
+                  <i className="fas fa-ice-cream"></i>
+                </span>
+                {size}
+              </li>
+              <li>
+                <span className="fa-li">
+                  <i className="fas fa-ice-cream"></i>
+                </span>
+                {container}
+              </li>
+            </ul>
+          </div>
+          <div className="col-2 text-right">
+            <Button
+              className="btn-responsive"
+              onClick={() => handleSubmit()}
+              variant="warning"
+              size="sm"
+              type="reset"
+            >
+              <i className="fas fa-plus"> Submit Order</i>
+            </Button>
+          </div>
+        </div>
       </form>
     </div>
   );

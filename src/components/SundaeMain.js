@@ -5,14 +5,12 @@ import SundaeChoice from "./SundaeChoice";
 
 //-------------------------------- FIND SUNDAE BY SEARCH ----------------------------------------
 
-
 export default function SundaeList(props) {
   const { sundaes, onAdd } = props;
 
-
   return (
-    <main className="block col-2">
-      <h2>Sundaes</h2>
+    <main className="block col-2" id="classic">
+      <h1>Classic Sundaes</h1>
       <div className="row">
         {sundaes.map((sundae) => (
           <SundaeChoice key={sundae.id} sundae={sundae} onAdd={onAdd} />

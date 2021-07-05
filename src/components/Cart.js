@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 
 export default function Cart(props) {
-  const { cartItems, onAdd, onRemove } = props;
+  const { cartItems, onAdd, onRemove, onEdit } = props;
 
   return (
     <aside className="block col-1">
@@ -14,13 +14,19 @@ export default function Cart(props) {
             <div className="col-2">
               <ul className="fa-ul">
                 <li><span className="fa-li"><i className="fas fa-ice-cream"></i></span>{item.option}</li>
+                <li>{item.icecream}</li>
+                <li>{item.toppings}</li>
+                <li>{item.size}</li>
+                <li>{item.container}</li>
+
+               
               </ul>
             </div>
             <div className="col-2">
               <Button
                 className="btn-responsive"
                 onClick={() => onRemove(item)}
-                variant="primary"
+                variant="warning"
                 size="sm"
               >
                 <i className="fas fa-minus"></i>
@@ -29,11 +35,19 @@ export default function Cart(props) {
               <Button
                 className="btn-responsive"
                 onClick={() => onAdd(item)}
-                variant="success"
+                variant="warning"
                 size="sm"
               >
-                <i className="fas fa-plus"></i>
-                
+                <i className="fas fa-plus"></i>                
+              </Button>
+              {" "}
+              <Button
+                className="btn-responsive"
+                onClick={() => onEdit(item)}
+                variant="warning"
+                size="sm"
+              >
+               <i class="fas fa-edit"></i>
               </Button>
             </div>
             <div className="col-2 text-right">Qty: {item.qty}</div>

@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
-export default function Product(props) {
+export default function SundaeChoice(props) {
   const { sundae, onAdd } = props;
   return (
     <div key={sundae.option} className="row">
