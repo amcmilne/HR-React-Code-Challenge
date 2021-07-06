@@ -7,14 +7,10 @@ export default function SundaeChoice(props) {
     <div key={sundae.option} className="row">
       <div className="col-2">
         <h3>{sundae.option}</h3>
+        <img className="small" src={sundae.image} alt={sundae.option} />
       </div>
       <div className="col-2">
-        <Button
-          className="btn-responsive"
-          variant="info"
-          size="sm"
-          onClick={() => onAdd(sundae)}
-        >
+        <Button onClick={() => onAdd(sundae)}>
           <i className="fas fa-cart-plus"></i>
         </Button>
       </div>

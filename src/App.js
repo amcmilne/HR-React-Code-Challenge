@@ -16,10 +16,11 @@ function App() {
   //--------------------- Handle Adding to Cart --------------------------//
 
   const onAdd = (sundae) => {
+    console.log(sundae.id);
+    console.log(cartItems);
     const exist = cartItems.find((x) => x.id === sundae.id);
     if (exist) {
       if (sundae.type === "custom") {
-        console.log("test");
         setCartItems(
           cartItems.map((x) =>
             x.id === sundae.id
@@ -62,7 +63,8 @@ function App() {
 
   //--------------------- Handle Editing Cart  --------------------------//
 
-  const onEdit = (sundae) => {
+  const onEdit = (sundae) => {    
+    setCustomizedOrder("false");
     setCartItem(sundae);
     setEditItem("true");
   };
@@ -74,7 +76,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="container-fluid">
       <Header sundaes={sundaes} countCartItems={cartItems.length} />
       <div className="row">
         <SundaeMain sundaes={sundaes} onAdd={onAdd} />
@@ -91,8 +93,9 @@ function App() {
             <AddButton addCustomizedOrder={handleClickAddCustomizedOrder} />
           )}
 
-          {editItem === "true" && (<Form onAdd={onAdd} cartItem={cartItem} />)}
-          {customizedOrder === "true" && (<Form onAdd={onAdd}  />)}
+          {(editItem === "true" && <Form onAdd={onAdd} cartItem={cartItem}  />)
+          || (customizedOrder === "true" && <Form onAdd={onAdd} />)
+          }          
         </div>
       </div>
     </div>

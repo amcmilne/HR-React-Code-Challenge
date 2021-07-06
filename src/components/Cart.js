@@ -18,15 +18,13 @@ export default function Cart(props) {
                 <li>{item.toppings}</li>
                 <li>{item.size}</li>
                 <li>{item.container}</li>
-
-               
               </ul>
             </div>
             <div className="col-2">
               <Button
                 className="btn-responsive"
                 onClick={() => onRemove(item)}
-                variant="warning"
+              
                 size="sm"
               >
                 <i className="fas fa-minus"></i>
@@ -35,7 +33,7 @@ export default function Cart(props) {
               <Button
                 className="btn-responsive"
                 onClick={() => onAdd(item)}
-                variant="warning"
+            
                 size="sm"
               >
                 <i className="fas fa-plus"></i>                
@@ -46,6 +44,7 @@ export default function Cart(props) {
                 onClick={() => onEdit(item)}
                 variant="warning"
                 size="sm"
+                disabled={item.type === "custom" ? false : true}
               >
                <i class="fas fa-edit"></i>
               </Button>

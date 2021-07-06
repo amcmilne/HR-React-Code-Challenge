@@ -1,11 +1,16 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
 function AddButton( {addCustomizedOrder}) {
   return (
     <div className="add-button">
-      <button onClick={addCustomizedOrder}>
+      <Button
+        className="btn-responsive" 
+        onClick={addCustomizedOrder}
+        variant="warning"
+        >
        + Start Your Customized Sundae
-      </button>
+      </Button>
     </div>
   );
 }

@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
-//import IceCreamList from "./IceCreamList";
-//import ToppingsList from "./ToppingsList";
 import content from "../content";
 import Button from "react-bootstrap/Button";
 import { v4 as uuidv4 } from "uuid";
 
 function Form(props) {
-  // let key = {index};
-  let id = uuidv4();
   let type = "custom";
   const { onAdd, cartItem } = props;
   const [icecream, setIcecream] = useState("");
@@ -15,40 +11,19 @@ function Form(props) {
   const [size, setSize] = useState("");
   const [container, setContainer] = useState("");
   const [option, setSundaeName] = useState("");
-
-  const [editingItem, setEditingItem] = useState("true");
+  const [id, setID] = useState(uuidv4());
 
   useEffect(() => {
     if (typeof cartItem != "undefined") {
-      console.log(editingItem);
-      console.log(cartItem);
-      setSundaeName(
-        cartItem.option,
-        cartItem.icecream,
-        cartItem.toppings,
-        cartItem.size,
-        cartItem.container
-      );
-      setEditingItem("false");
+      setIcecream(cartItem.icecream);
+      setToppings(cartItem.toppings);
+      setSize(cartItem.size);
+      setContainer(cartItem.container);
+      setSundaeName(cartItem.option);
+      setID(cartItem.id);
     }
-  }, [cartItem, editingItem]);
+  }, [cartItem]);
 
-  if (
-    typeof cartItem != "undefined" &&
-    cartItem !== "classic" &&
-    editingItem === "true"
-  ) {
-    console.log(editingItem);
-    console.log(cartItem);
-    setSundaeName(
-      cartItem.option,
-      cartItem.icecream,
-      cartItem.toppings,
-      cartItem.size,
-      cartItem.container
-    );
-    setEditingItem("false");
-  }
   //----------------Handle Name Selection -----------------------//
   const handleNameChange = (e) => {
     e.preventDefault();
@@ -77,7 +52,7 @@ function Form(props) {
   };
   // -------------Handle Submit Selections ------------------------//
   const handleSubmit = (e) => {
-    let sundaeObject = {
+    const sundaeObject = {
       id,
       type,
       option,
@@ -87,13 +62,17 @@ function Form(props) {
       container,
     };
     onAdd(sundaeObject);
+    setID("");
+    setSundaeName("");
+    setIcecream("");
+    setToppings("");
+    setSize("");
   };
 
   return (
     <div className="form">
       <form onSubmit={(e) => handleSubmit(e.target.reset)}>
         <h1>Create Your Own!</h1>
-
         <div className="customSundaeName">
           <label>Name Your Sundae:</label>
           <input
@@ -105,16 +84,22 @@ function Form(props) {
             onChange={handleNameChange}
           />
         </div>
-
         <div className="icecreamOptions" id="flavors">
           <h2>Flavors:</h2>
-
           <div className="icecream-list">
             <label>Select:</label>
-            <select className="form-select" onChange={handleIcecreamChange}>
-              <option placeholder="Choices" value={icecream}></option>
+            <select
+              className="form-select"
+              onChange={handleIcecreamChange}
+              value={icecream}
+            >
+              <option value="">Select a flavor</option>
               {content.icecream.map((flavors) => (
-                <option className="icrecreamFlavors" key={flavors.id}>
+                <option
+                  className="icrecreamFlavors"
+                  key={flavors.id}
+                  value={flavors.flavor}
+                >
                   {flavors.flavor}
                 </option>
               ))}
@@ -126,10 +111,18 @@ function Form(props) {
           <h2>Toppings:</h2>
           <div className="toppings-list">
             <label>Select:</label>
-            <select className="form-select" onChange={handleToppingsChange}>
-              <option value={toppings}></option>
+            <select
+              className="form-select"
+              onChange={handleToppingsChange}
+              value={toppings}
+            >
+              <option value="">Select a topping</option>
               {content.toppings.map((types) => (
-                <option className="icrecreamFlavors" key={types.id}>
+                <option
+                  className="toppingsOption"
+                  key={types.id}
+                  value={types.type}
+                >
                   {types.type}
                 </option>
               ))}
@@ -137,65 +130,54 @@ function Form(props) {
           </div>
         </div>
         <hr></hr>
-        <h2>Size:</h2>
-        <select
-          className="form-select"
-          value={size}
-          onChange={handleSizeChange}
-        >
-          <option value="One Scoop">One Scoop</option>
-          <option value="Two Scoops">Two Scoops</option>
-          <option value="Three Scoops">Three Scoops</option>
-          <option value="shareable">Shareable</option>
-        </select>
+        <div className="sizeOptions" id="size">
+          <h2>Size:</h2>
+          <div className="size-list">
+            <label>Select:</label>
+            <select
+              className="form-select"
+              onChange={handleSizeChange}
+              value={size}
+            >
+              <option value="">Select a size</option>
+              {content.size.map((options) => (
+                <option
+                  className="sizeOptions"
+                  key={options.id}
+                  value={options.option}
+                >
+                  {options.option}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
         <hr></hr>
-        <h2>Container:</h2>
 
+        <h2>Container:</h2>
         <div
-          className="container"
+          className="containerOptions"
+          id="container"
           value={container}
           onChange={handleContainerChange}
         >
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              value="Cup"
-              name="flexRadioDefault"
-              id="flexRadioDefault1"
-              //   checked={false}
-            />
-            <label className="form-check-label" htmlFor="flexRadioDefault1">
-              Cup
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              value="Waffle Bowl"
-              name="flexRadioDefault"
-              id="flexRadioDefault2"
-              //   checked={false}
-            />
-            <label className="form-check-label" htmlFor="flexRadioDefault2">
-              Waffle Bowl
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              value=" Dipped Waffle Bowl"
-              name="flexRadioDefault"
-              id="flexRadioDefault3"
-              //   checked={false}
-            />
-            <label className="form-check-label" htmlFor="flexRadioDefault3">
-              Dipped Waffle Bowl
-            </label>
-          </div>
+          {content.container.map((options) => (
+            <>
+              <input
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                key={options.id}
+                value={options.option}
+              ></input>
+              <label className="form-check-label" htmlFor="flexRadioDefault1">
+                {options.option}
+              </label>
+              <br />
+            </>
+          ))}
         </div>
+
         <hr></hr>
         <div className="row">
           <div className="col-2">
@@ -233,13 +215,7 @@ function Form(props) {
             </ul>
           </div>
           <div className="col-2 text-right">
-            <Button
-              className="btn-responsive"
-              onClick={() => handleSubmit()}
-              variant="warning"
-              size="sm"
-              type="reset"
-            >
+            <Button className="btn-responsive" onClick={() => handleSubmit()}>
               <i className="fas fa-plus"> Submit Order</i>
             </Button>
           </div>
