@@ -20,13 +20,15 @@ export default function SundaeList(props) {
   );
 }
 
+//   //-------------------------------- FUTURE IMPLEMENTATION----------------------------------------
+
 // function SundaeList(props) {
 //   const { sundaes, handleOnAdd } = props;
 //   const title = "Sundae List:";
 //   const [search, setSearch] = useState("");
 //   const [filteredSundaes, setFilteredSundaes] = useState([]);
 
-//   //-------------------------------- FIND SUNDAE BY SEARCH ----------------------------------------
+
 //   useEffect(() => {
 //     setFilteredSundaes(
 //       sundaes.filter((sundae) =>

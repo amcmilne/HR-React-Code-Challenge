@@ -74,7 +74,7 @@ const data = {
       option: "Hot Fudge Sundae",
       type: "classic",
       id: "1",
-      image: '/assets/hotfudgesundae.jpg'
+      image: "/assets/hotfudgesundae.jpg",
     },
     {
       option: "Caramel Sundae",
@@ -136,6 +136,35 @@ const data = {
       id: "3",
     },
   ],
+
+  images: {
+    sundaes: [
+      {
+        img: process.env.PUBLIC_URL + "/assets/caramelsundae.jpg",
+        alt: "caramelsundae",
+      },
+      {
+        img: process.env.PUBLIC_URL + "/assets/funfetti.jpg",
+        alt: "funfetti",
+      },
+      {
+        img: process.env.PUBLIC_URL + "/hotfudgesundae.jpg",
+        alt: "hotfudgesundae",
+      },
+      {
+        img: process.env.PUBLIC_URL + "/assets/razzledazzlesundae.jpg",
+        alt: "razzledazzlesundae",
+      },
+      {
+        img: process.env.PUBLIC_URL + "/assets/strawberrysundae.jpg",
+        alt: "strawberrysundae",
+      },
+      {
+        img: process.env.PUBLIC_URL + "/assets/turtlesundae.jfif",
+        alt: "turtlesundae",
+      },
+    ],
+  },
 };
 
 export default data;

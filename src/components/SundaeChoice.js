@@ -1,13 +1,14 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
+
 export default function SundaeChoice(props) {
   const { sundae, onAdd } = props;
   return (
     <div key={sundae.option} className="row">
       <div className="col-2">
         <h3>{sundae.option}</h3>
-        <img className="small" src={sundae.image} alt={sundae.option} />
+      
       </div>
       <div className="col-2">
         <Button onClick={() => onAdd(sundae)}>

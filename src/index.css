@@ -4,7 +4,7 @@
 * {
   margin: 0;
   font-family: "Viaoda Libre";
-  color: #696969;
+  color: white;
 }
 
 .header {
@@ -20,13 +20,22 @@
 }
 
 .content,
-.add-button,
 .form {
   display: flex-auto;
   align-items: center;
   max-width: 720px;
   margin: 40px auto;
   padding: 20px;
+  background-color: #db7093;
+  border-radius: 0.5rem;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+
+  padding: 20px;
+  border-radius: 0.5rem;
 }
 
 .row {
@@ -40,13 +49,13 @@
   flex: 1;
 }
 .col-2 {
-  flex: 2;
+  flex: 1;
 }
 .col-3 {
   flex: 3;
 }
 .block {
-  background-color: #87CEEB;
+  background-color: #87ceeb;
   padding: 0.5rem;
   margin: 0.5rem;
   border-radius: 1.5rem;
@@ -54,7 +63,6 @@
 .text-right {
   text-align: right;
 }
-
 
 .sundae-list {
   display: flex;
@@ -71,7 +79,9 @@ h1.sundaeList {
   text-align: right;
 }
 
-aside {
+aside,
+main {
+  max-width: 720px;
   border-radius: 0.5rem;
   float: right;
 }
@@ -94,23 +104,31 @@ aside {
 h3 {
   display: inline-block;
   margin-right: 10px;
-  }
+}
 
-  select.form-select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #D2B48C;
-  }
+select.form-select {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #d2b48c;
+}
 
-  Button {
-    background-color: #DB7093 !important; 
-    border-color: #DB7093 !important;
-  }
-  /* html {
-    background-image: url('./background.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-  } */
+Button {
+  background-color: #db7093 !important;
+  border-color: #db7093 !important;
+}
+
+html {
+  margin-top: 50px; 
+  margin-left: 225px;
+  margin-right: 225px;
+  background-color: #FFE4E1;
+}
+.container-fluid {
+  background-color: #FFE4E1;
+}
+
+.custom-order {
+  color: #87CEEB; 
+}

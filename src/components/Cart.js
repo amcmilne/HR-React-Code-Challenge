@@ -31,7 +31,7 @@ export default function Cart(props) {
               </Button>
               {" "}
               <Button
-                className="btn-responsive"
+      
                 onClick={() => onAdd(item)}
             
                 size="sm"
@@ -40,13 +40,13 @@ export default function Cart(props) {
               </Button>
               {" "}
               <Button
-                className="btn-responsive"
+            
                 onClick={() => onEdit(item)}
                 variant="warning"
                 size="sm"
                 disabled={item.type === "custom" ? false : true}
               >
-               <i class="fas fa-edit"></i>
+               <i className="fas fa-edit"></i>
               </Button>
             </div>
             <div className="col-2 text-right">Qty: {item.qty}</div>
@@ -58,7 +58,7 @@ export default function Cart(props) {
             <hr />
             <div className="text-right">
               <Button
-                className="btn-responsive"
+        
                 variant="danger"
                 onClick={() => alert("Implement Checkout!")}
               >

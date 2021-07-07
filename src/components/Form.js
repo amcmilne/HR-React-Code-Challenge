@@ -69,20 +69,46 @@ function Form(props) {
     setSize("");
   };
 
+  // const forms = document.querySelectorAll(".needs-validation");
+
+  // // Loop over them and prevent submission
+  // Array.prototype.slice.call(forms).forEach(function (form) {
+  //   form.addEventListener(
+  //     "submit",
+  //     function (event) {
+  //       if (!form.checkValidity()) {
+  //         event.preventDefault();
+  //         event.stopPropagation();
+  //       }
+
+  //       form.classList.add("was-validated");
+  //     },
+  //     false
+  //   );
+  //   console.log(forms);
+  // });
+
   return (
-    <div className="form">
+    <article className="form needs-validation" nonvalidate="true">
       <form onSubmit={(e) => handleSubmit(e.target.reset)}>
         <h1>Create Your Own!</h1>
+
         <div className="customSundaeName">
-          <label>Name Your Sundae:</label>
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Choose Your Name"
-            aria-label="default input example"
-            value={option}
-            onChange={handleNameChange}
-          />
+          <label className="form-label" forhtml="validationName">
+            Name Your Sundae:
+          </label>
+          <div className="input-group">
+            <input
+              className="form-control"
+              id="validationName"
+              required
+              type="text"
+              placeholder="Choose Your Name"
+              aria-label="default input example"
+              value={option}
+              onChange={handleNameChange}
+            />
+          </div>
         </div>
         <div className="icecreamOptions" id="flavors">
           <h2>Flavors:</h2>
@@ -154,13 +180,11 @@ function Form(props) {
         </div>
         <hr></hr>
 
-        <h2>Container:</h2>
-        <div
-          className="containerOptions"
-          id="container"
-          value={container}
-          onChange={handleContainerChange}
-        >
+        <h2>
+          Container:
+          <abbr title="This field is mandatory" aria-label="required"></abbr>
+        </h2>
+        <div id="container" value={container} onChange={handleContainerChange}>
           {content.container.map((options) => (
             <>
               <input
@@ -169,11 +193,10 @@ function Form(props) {
                 id="flexRadioDefault1"
                 key={options.id}
                 value={options.option}
-              ></input>
+              ></input>{" "}
               <label className="form-check-label" htmlFor="flexRadioDefault1">
                 {options.option}
-              </label>
-              <br />
+              </label>{" "}
             </>
           ))}
         </div>
@@ -182,31 +205,31 @@ function Form(props) {
         <div className="row">
           <div className="col-2">
             <ul className="fa-ul">
-              <li>
+              <li key={option.id}>
                 <span className="fa-li">
                   <i className="fas fa-ice-cream"></i>
                 </span>
                 {option}
               </li>
-              <li>
+              <li key={icecream.id}>
                 <span className="fa-li">
                   <i className="fas fa-ice-cream"></i>
                 </span>
                 {icecream}
               </li>
-              <li>
+              <li key={toppings.id}>
                 <span className="fa-li">
                   <i className="fas fa-ice-cream"></i>
                 </span>
                 {toppings}
               </li>
-              <li>
+              <li key={size.id}>
                 <span className="fa-li">
                   <i className="fas fa-ice-cream"></i>
                 </span>
                 {size}
               </li>
-              <li>
+              <li key={container.id}>
                 <span className="fa-li">
                   <i className="fas fa-ice-cream"></i>
                 </span>
@@ -215,13 +238,13 @@ function Form(props) {
             </ul>
           </div>
           <div className="col-2 text-right">
-            <Button className="btn-responsive" onClick={() => handleSubmit()}>
+            <Button type="submit" onClick={() => handleSubmit()}>
               <i className="fas fa-plus"> Submit Order</i>
             </Button>
           </div>
         </div>
       </form>
-    </div>
+    </article>
   );
 }
 
