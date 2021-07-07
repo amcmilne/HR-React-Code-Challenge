@@ -13,7 +13,12 @@ export default function Cart(props) {
           <div key={item.id} className="row">
             <div className="col-2">
               <ul className="fa-ul">
-                <li><span className="fa-li"><i className="fas fa-ice-cream"></i></span>{item.option}</li>
+                <li>
+                  <span className="fa-li">
+                    <i className="fas fa-ice-cream"></i>
+                  </span>
+                  {item.option}
+                </li>
                 <li>{item.icecream}</li>
                 <li>{item.toppings}</li>
                 <li>{item.size}</li>
@@ -21,32 +26,22 @@ export default function Cart(props) {
               </ul>
             </div>
             <div className="col-2">
-              <Button
-                className="btn-responsive"
-                onClick={() => onRemove(item)}
-              
-                size="sm"
-              >
+              <Button 
+              onClick={() => onRemove(item)} 
+              size="sm">
                 <i className="fas fa-minus"></i>
-              </Button>
-              {" "}
+              </Button>{" "}
+              <Button 
+              onClick={() => onAdd(item)} 
+              size="sm">
+                <i className="fas fa-plus"></i>
+              </Button>{" "}
               <Button
-      
-                onClick={() => onAdd(item)}
-            
-                size="sm"
-              >
-                <i className="fas fa-plus"></i>                
-              </Button>
-              {" "}
-              <Button
-            
                 onClick={() => onEdit(item)}
-                variant="warning"
                 size="sm"
                 disabled={item.type === "custom" ? false : true}
               >
-               <i className="fas fa-edit"></i>
+                <i className="fas fa-edit"></i>
               </Button>
             </div>
             <div className="col-2 text-right">Qty: {item.qty}</div>
@@ -57,11 +52,7 @@ export default function Cart(props) {
           <>
             <hr />
             <div className="text-right">
-              <Button
-        
-                variant="danger"
-                onClick={() => alert("Implement Checkout!")}
-              >
+              <Button onClick={() => alert("Implement Checkout!")}>
                 Checkout
               </Button>
             </div>

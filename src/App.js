@@ -92,9 +92,9 @@ function App() {
             <AddButton addCustomizedOrder={handleClickAddCustomizedOrder} />
           )}
 
-          {(editItem === "true" && (
+          {(editItem === "true" && 
             <Form onAdd={onAdd} cartItem={cartItem} />
-          )) ||
+          ) ||
             (customizedOrder === "true" && <Form onAdd={onAdd} />)}
         </div>
       </div>

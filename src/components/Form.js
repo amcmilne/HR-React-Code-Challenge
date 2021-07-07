@@ -67,6 +67,7 @@ function Form(props) {
     setIcecream("");
     setToppings("");
     setSize("");
+    setContainer("");
   };
 
   // const forms = document.querySelectorAll(".needs-validation");
@@ -89,7 +90,11 @@ function Form(props) {
   // });
 
   return (
-    <article className="form needs-validation" nonvalidate="true">
+    <article
+      className="form needs-validation"
+      nonvalidate="true"
+      hidden={handleSubmit === true}
+    >
       <form onSubmit={(e) => handleSubmit(e.target.reset)}>
         <h1>Create Your Own!</h1>
 
@@ -238,9 +243,32 @@ function Form(props) {
             </ul>
           </div>
           <div className="col-2 text-right">
-            <Button type="submit" onClick={() => handleSubmit()}>
-              <i className="fas fa-plus"> Submit Order</i>
-            </Button>
+            <span
+              class="d-inline-block"
+              tabindex="0"
+              data-toggle="tooltip"
+              title="Please Make All Selections Before Submitting"
+            >
+              <Button
+                type="submit"
+                onClick={() => handleSubmit()}
+                disabled={
+                  option.length === 0
+                    ? true
+                    : false || icecream.length === 0
+                    ? true
+                    : false || toppings.length === 0
+                    ? true
+                    : false || size.length === 0
+                    ? true
+                    : false || container.length === 0
+                    ? true
+                    : false
+                }
+              >
+                <i className="fas fa-plus"> Submit Order</i>
+              </Button>
+            </span>
           </div>
         </div>
       </form>
