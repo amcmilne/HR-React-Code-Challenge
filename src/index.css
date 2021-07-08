@@ -117,6 +117,7 @@ select.form-select {
 Button {
   background-color: #f5deb3 !important;
   border-color: #f5deb3 !important;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 html {
@@ -143,6 +144,7 @@ Button#custom-order {
   display: flex;
   color: black;
   font-size: 25px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
 }
 .card {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
@@ -162,6 +164,7 @@ Button.card {
   font-size: 18px;
   margin: 0.4em;
   float: right;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
 }
 h3.sundae-name {
   text-align: center;
@@ -176,13 +179,15 @@ img.sundae-image {
 h5.footer {
   display: flex;
   background-color: black;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 40px;
   width: 100%;
-  border-top: 1px solid white;
+  border: none;
+  
+
   justify-content: center;
   align-items: center;
 }
