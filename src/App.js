@@ -8,6 +8,8 @@ import SundaeMain from "./components/SundaeMain";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 
+
+
 function App() {
   const { sundaes } = data;
   const [cartItems, setCartItems] = useState([]);
@@ -100,7 +102,7 @@ function App() {
       <div>
         <div>
           {customizedOrder === "start" && (
-            <OpenForm addCustomizedOrder={handleClickOpenForm} />
+            <OpenForm addCustomizedOrder={handleClickOpenForm} /> 
           )}
           {(editItem === "true" && (
             <Form onAdd={onAdd} cartItem={cartItem} />

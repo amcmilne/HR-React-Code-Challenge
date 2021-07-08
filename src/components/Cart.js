@@ -53,7 +53,7 @@ export default function Cart(props) {
           <>
             <hr />
             <div className="text-right">
-              <Button onClick={() => alert("Implement Checkout!")}>
+              <Button className="checkout-btn" onClick={() => alert("Implement Checkout!")}>
                 Checkout
               </Button>
             </div>

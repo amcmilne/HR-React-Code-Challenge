@@ -71,7 +71,7 @@ function Form(props) {
   }, [cartItem]);
 
   return (
-    <article className="form needs-validation" nonvalidate="true">
+    <article id="form" className="form needs-validation" nonvalidate="true">
       <form onSubmit={(e) => handleSubmit(e.target.reset)}>
         <h1>Create Your Own!</h1>
         <div className="customSundaeName">
