@@ -1,16 +1,19 @@
 import data from "./content/index";
 import { useState } from "react";
-import AddButton from "./components/AddButton";
+import OpenForm from "./components/OpenForm";
+//import CloseForm from "./components/CloseForm";
 import Form from "./components/Form";
 import Header from "./components/Header";
 import SundaeMain from "./components/SundaeMain";
 import Cart from "./components/Cart";
+import Footer from "./components/Footer";
 
 function App() {
   const { sundaes } = data;
   const [cartItems, setCartItems] = useState([]);
   const [cartItem, setCartItem] = useState();
   const [customizedOrder, setCustomizedOrder] = useState("start");
+  //const [orderComplete, setOrderComplete] = useState("finish");
   const [editItem, setEditItem] = useState("false");
 
   //--------------------- Handle Adding to Cart --------------------------//
@@ -69,9 +72,17 @@ function App() {
 
   // --------------------Handle Opening Form --------------------------//
 
-  const handleClickAddCustomizedOrder = () => {
+  const handleClickOpenForm = () => {
     setCustomizedOrder("true");
   };
+
+  //---------------------Handle Close Form -----------------------------//
+
+  // const handleClickCloseForm = () => {
+  //   setOrderComplete("true");
+  //   setCustomizedOrder('false');
+  //   setEditItem("false");
+  // };
 
   return (
     <div className="container-fluid">
@@ -89,15 +100,19 @@ function App() {
       <div>
         <div>
           {customizedOrder === "start" && (
-            <AddButton addCustomizedOrder={handleClickAddCustomizedOrder} />
+            <OpenForm addCustomizedOrder={handleClickOpenForm} />
           )}
-
-          {(editItem === "true" && 
+          {(editItem === "true" && (
             <Form onAdd={onAdd} cartItem={cartItem} />
-          ) ||
+          )) ||
             (customizedOrder === "true" && <Form onAdd={onAdd} />)}
+
+          {/* {orderComplete === "finish" && (
+            <CloseForm haveCustomOrder={handleClickCloseForm} />
+          )} */}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

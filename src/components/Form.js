@@ -13,17 +13,6 @@ function Form(props) {
   const [option, setSundaeName] = useState("");
   const [id, setID] = useState(uuidv4());
 
-  useEffect(() => {
-    if (typeof cartItem != "undefined") {
-      setIcecream(cartItem.icecream);
-      setToppings(cartItem.toppings);
-      setSize(cartItem.size);
-      setContainer(cartItem.container);
-      setSundaeName(cartItem.option);
-      setID(cartItem.id);
-    }
-  }, [cartItem]);
-
   //----------------Handle Name Selection -----------------------//
   const handleNameChange = (e) => {
     e.preventDefault();
@@ -69,35 +58,22 @@ function Form(props) {
     setSize("");
     setContainer("");
   };
-
-  // const forms = document.querySelectorAll(".needs-validation");
-
-  // // Loop over them and prevent submission
-  // Array.prototype.slice.call(forms).forEach(function (form) {
-  //   form.addEventListener(
-  //     "submit",
-  //     function (event) {
-  //       if (!form.checkValidity()) {
-  //         event.preventDefault();
-  //         event.stopPropagation();
-  //       }
-
-  //       form.classList.add("was-validated");
-  //     },
-  //     false
-  //   );
-  //   console.log(forms);
-  // });
+  // -------------------------- Reload Form for Edits ---------------------//
+  useEffect(() => {
+    if (typeof cartItem != "undefined") {
+      setIcecream(cartItem.icecream);
+      setToppings(cartItem.toppings);
+      setSize(cartItem.size);
+      setContainer(cartItem.container);
+      setSundaeName(cartItem.option);
+      setID(cartItem.id);
+    }
+  }, [cartItem]);
 
   return (
-    <article
-      className="form needs-validation"
-      nonvalidate="true"
-      hidden={handleSubmit === true}
-    >
+    <article className="form needs-validation" nonvalidate="true">
       <form onSubmit={(e) => handleSubmit(e.target.reset)}>
         <h1>Create Your Own!</h1>
-
         <div className="customSundaeName">
           <label className="form-label" forhtml="validationName">
             Name Your Sundae:
@@ -244,8 +220,8 @@ function Form(props) {
           </div>
           <div className="col-2 text-right">
             <span
-              class="d-inline-block"
-              tabindex="0"
+              className="d-inline-block"
+              tabIndex="0"
               data-toggle="tooltip"
               title="Please Make All Selections Before Submitting"
             >

@@ -1,33 +1,34 @@
-//import { useState, useEffect } from "react";
-// import SundaeChoice from "./SundaeChoice";
-import React from "react"; 
-import SundaeChoice from "./SundaeChoice";
-
-//-------------------------------- FIND SUNDAE BY SEARCH ----------------------------------------
+import React from "react";
+import SundaeContent from "./SundaeContent";
 
 export default function SundaeList(props) {
   const { sundaes, onAdd } = props;
 
   return (
-    <main className="block col-2" id="classic">
+    <main className="block col-1" id="classic">
       <h1>Classic Sundaes</h1>
-      <div className="row">
+      <hr></hr>
+      <strong>
+        <p style={{fontSize:"20px", textAlign: "center"}} className="sundae-classic">Choose from the list of Classic Sundaes:</p>
+      </strong>
+
+      <div className="">
         {sundaes.map((sundae) => (
-          <SundaeChoice key={sundae.id} sundae={sundae} onAdd={onAdd} />
+          <SundaeContent key={sundae.id} sundae={sundae} onAdd={onAdd} />
         ))}
       </div>
     </main>
   );
 }
 
-//   //-------------------------------- FUTURE IMPLEMENTATION----------------------------------------
+//-------------------------------- FUTURE IMPLEMENTATION----------------------------------------
+//-------------------------------- FIND SUNDAE BY SEARCH ----------------------------------------
 
 // function SundaeList(props) {
 //   const { sundaes, handleOnAdd } = props;
 //   const title = "Sundae List:";
 //   const [search, setSearch] = useState("");
 //   const [filteredSundaes, setFilteredSundaes] = useState([]);
-
 
 //   useEffect(() => {
 //     setFilteredSundaes(

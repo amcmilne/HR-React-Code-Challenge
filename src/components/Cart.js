@@ -7,6 +7,7 @@ export default function Cart(props) {
   return (
     <aside className="block col-1">
       <h2>Cart Items</h2>
+      <hr></hr>
       <div>
         {cartItems.length === 0 && <div>Cart is empty</div>}
         {cartItems.map((item) => (
