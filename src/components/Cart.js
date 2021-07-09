@@ -1,18 +1,25 @@
 import React from "react";
+import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 export default function Cart(props) {
   const { cartItems, onAdd, onRemove, onEdit } = props;
 
   return (
-    <aside className="block col-1">
-      <h2>Cart Items</h2>
-      <hr></hr>
-      <div>
+    <Container fluid>
+      <div className="cart-items">
+        <h2>Cart Items</h2>
+      </div>
+
+      <aside className="" id="cart">
+        <hr></hr>
+
         {cartItems.length === 0 && <div>Cart is empty</div>}
         {cartItems.map((item) => (
-          <div key={item.id} className="row">
-            <div className="col-2">
+          <Row key={item.id}>
+            <Col sm={6}>
               <ul className="fa-ul">
                 <li>
                   <span className="fa-li">
@@ -25,16 +32,12 @@ export default function Cart(props) {
                 <li>{item.size}</li>
                 <li>{item.container}</li>
               </ul>
-            </div>
-            <div className="col-2">
-              <Button 
-              onClick={() => onRemove(item)} 
-              size="sm">
+            </Col>
+            <Col className="col-2" sm={4}>
+              <Button onClick={() => onRemove(item)} size="sm">
                 <i className="fas fa-minus"></i>
               </Button>{" "}
-              <Button 
-              onClick={() => onAdd(item)} 
-              size="sm">
+              <Button onClick={() => onAdd(item)} size="sm">
                 <i className="fas fa-plus"></i>
               </Button>{" "}
               <Button
@@ -44,22 +47,25 @@ export default function Cart(props) {
               >
                 <i className="fas fa-edit"></i>
               </Button>
-            </div>
-            <div className="col-2 text-right">Qty: {item.qty}</div>
-          </div>
+            </Col>
+            <Col sm={2}>Qty: {item.qty}</Col>
+          </Row>
         ))}
 
         {cartItems.length !== 0 && (
           <>
             <hr />
             <div className="text-right">
-              <Button className="checkout-btn" onClick={() => alert("Implement Checkout!")}>
+              <Button
+                className="checkout-btn"
+                onClick={() => alert("Implement Checkout!")}
+              >
                 Checkout
               </Button>
             </div>
           </>
         )}
-      </div>
-    </aside>
+      </aside>
+    </Container>
   );
 }

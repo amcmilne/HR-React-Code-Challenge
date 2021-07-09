@@ -1,23 +1,39 @@
 import React from "react";
 import SundaeContent from "./SundaeContent";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function SundaeList(props) {
   const { sundaes, onAdd } = props;
 
   return (
-    <main className="block col-1" id="classic">
-      <h1>Classic Sundaes</h1>
-      <hr></hr>
-      <strong>
-        <p style={{fontSize:"20px", textAlign: "center"}} className="sundae-classic">Choose from the list of Classic Sundaes:</p>
-      </strong>
-
-      <div className="">
-        {sundaes.map((sundae) => (
-          <SundaeContent key={sundae.id} sundae={sundae} onAdd={onAdd} />
-        ))}
+    <Container fluid>
+      <div className="sundae-list">
+        <h1 className="sundae-list">Classic Sundaes</h1>
       </div>
-    </main>
+
+      <Row>
+        <Col>
+          <main className="" id="classic">
+            <strong>
+              <p
+                style={{ fontSize: "20px", textAlign: "center" }}
+                className="sundae-classic"
+              >
+                Choose from the list of Classic Sundaes:
+              </p>
+            </strong>
+
+            <div className="">
+              {sundaes.map((sundae) => (
+                <SundaeContent key={sundae.id} sundae={sundae} onAdd={onAdd} />
+              ))}
+            </div>
+          </main>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

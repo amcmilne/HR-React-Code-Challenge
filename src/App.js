@@ -7,8 +7,9 @@ import Header from "./components/Header";
 import SundaeMain from "./components/SundaeMain";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
-
-
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function App() {
   const { sundaes } = data;
@@ -87,22 +88,27 @@ function App() {
   // };
 
   return (
-    <div className="container-fluid">
-      <Header sundaes={sundaes} countCartItems={cartItems.length} />
-
-      <div className="row">
-        <SundaeMain sundaes={sundaes} onAdd={onAdd} />
-        <Cart
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          onEdit={onEdit}
-        />
-      </div>
+    <Container fluid="md">
+      <Row>
+        <Header sundaes={sundaes} countCartItems={cartItems.length} />
+      </Row>
+      <Row>
+        <Col id="classic"  xs={12} md={8}>
+          <SundaeMain sundaes={sundaes} onAdd={onAdd} />
+        </Col>
+        <Col  xs={12} md={4}>
+          <Cart
+            cartItems={cartItems}
+            onAdd={onAdd}
+            onRemove={onRemove}
+            onEdit={onEdit}
+          />
+        </Col>
+      </Row>
       <div>
         <div>
           {customizedOrder === "start" && (
-            <OpenForm addCustomizedOrder={handleClickOpenForm} /> 
+            <OpenForm addCustomizedOrder={handleClickOpenForm} />
           )}
           {(editItem === "true" && (
             <Form onAdd={onAdd} cartItem={cartItem} />
@@ -115,7 +121,7 @@ function App() {
         </div>
       </div>
       <Footer />
-    </div>
+    </Container>
   );
 }
 
