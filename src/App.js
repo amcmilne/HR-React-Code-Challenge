@@ -6,7 +6,7 @@ import Form from "./components/Form";
 import Header from "./components/Header";
 import SundaeMain from "./components/SundaeMain";
 import Cart from "./components/Cart";
-import Footer from "./components/Footer";
+//import Footer from "./components/Footer";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -120,7 +120,7 @@ function App() {
           )} */}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Container>
   );
 }
