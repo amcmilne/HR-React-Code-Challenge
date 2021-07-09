@@ -184,7 +184,7 @@ function Form(props) {
 
         <hr></hr>
         <div className="row">
-          <div className="col-2">
+          <div className="">
             <ul className="fa-ul">
               <li key={option.id}>
                 <span className="fa-li">
@@ -218,7 +218,7 @@ function Form(props) {
               </li>
             </ul>
           </div>
-          <div className="col-2 text-right">
+          <div className="">
             <span
               className="d-inline-block"
               tabIndex="0"
@@ -226,6 +226,7 @@ function Form(props) {
               title="Please Make All Selections Before Submitting"
             >
               <Button
+                  className=""
                 type="submit"
                 onClick={() => handleSubmit()}
                 disabled={
